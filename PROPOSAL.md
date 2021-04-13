@@ -2,7 +2,9 @@
 
 For my final project, I want to work with the Riot Games/League of Legends API to collect information about a given
 player/champion and display it in an interface using Cinder. I would like to give the user the ability to input a player
-name/champion and select which statistics they would like to see.
+name/champion through a search bar UI element and select which statistics they would like to see.
+
+Link to API and documentation: https://developer.riotgames.com/docs/lol
 
 Previously in Java, I have worked with APIs, and I have experience in filtering/analyzing information from the JSON
 assignment.
@@ -25,6 +27,7 @@ beneficial for myself and my friends because it would be used often.
 
 * Create classes to represent players, champions, and storage of stats
 * Implement calls to the API that are used after searches to create/store values in classes
+  * Ensure that calls are able to accept champion/player names passed in as parameter
 * Implement various filtering and/or analysis functions for player and champion statistics
 
 ### Week Three 
@@ -32,6 +35,7 @@ beneficial for myself and my friends because it would be used often.
 * Display statistics using Cinder
 * Play around with the looks/design of the application to be visually pleasing
 * Provide buttons/menus/keyboard events to trigger the analysis/filter functions
+* Provide search bar for champion/player names(connect backend search function with frontend UI element)
 
 ### Stretch Goals
 
