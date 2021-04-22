@@ -57,6 +57,12 @@ list(APPEND TEST_FILES tests/test_main.cc)
 add_executable(my-league apps/my_league_main.cc ${CORE_SOURCE_FILES})
 target_include_directories(my-league PRIVATE include)
 
+# Obtain libcurl for HTTP requests
+set(CURL_LIBRARY "-lcurl")
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+target_link_libraries(my-league ${CURL_LIBRARIES})
+
 ci_make_app(
         APP_NAME my-league-test
         CINDER_PATH ${CINDER_PATH}
