@@ -49,13 +49,15 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
-list(APPEND SOURCE_FILES src/riot_parser.cpp
-        src/handler.cc)
+list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cpp
+        src/core/handler.cc)
+
+list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc)
 
 list(APPEND TEST_FILES tests/test_main.cc
         tests/test_handler.cc)
 
-add_executable(my-league apps/my_league_main.cc ${SOURCE_FILES})
+add_executable(my-league apps/my_league_main.cc ${CORE_SOURCE_FILES})
 target_include_directories(my-league PRIVATE include)
 
 # Obtain libcurl for HTTP requests
@@ -63,6 +65,13 @@ set(CURL_LIBRARY "-lcurl")
 find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIR})
 target_link_libraries(my-league ${CURL_LIBRARIES})
+
+ci_make_app(
+        APP_NAME my-league-app
+        CINDER_PATH ${CINDER_PATH}
+        SOURCES apps/my_league_app_main.cc ${INTERFACE_SOURCE_FILES}
+        INCLUDES include
+)
 
 ci_make_app(
         APP_NAME my-league-test
@@ -73,6 +82,7 @@ ci_make_app(
 )
 
 target_link_libraries(my-league-test ${CURL_LIBRARIES})
+target_link_libraries(my-league-app ${CURL_LIBRARIES})
 
 if (MSVC)
     set_property(TARGET my-league-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")

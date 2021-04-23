@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "handler.h"
+#include "core/handler.h"
 
 using namespace myleague;
 
@@ -42,7 +42,7 @@ std::string Handler::HandleRequest(const std::string &url) {
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
   }
-  
+
   return readBuffer;
 }
 

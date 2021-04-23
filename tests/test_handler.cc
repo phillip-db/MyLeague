@@ -1,5 +1,5 @@
 #include <catch2/catch.hpp>
-#include "handler.h"
+#include "core/handler.h"
 
 using namespace myleague;
 
