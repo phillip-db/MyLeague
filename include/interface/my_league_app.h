@@ -3,7 +3,7 @@
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
-#include "core/handler.h"
+#include "core/api_handler.h"
 
 namespace myleague {
 
@@ -14,7 +14,7 @@ class MyLeagueApp : public ci::app::App {
  public:
   MyLeagueApp();
 
-  void draw();
+  void draw() override;
 
   const double kWindowSize = 700;
   const double kMargin = 100;

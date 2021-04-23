@@ -50,12 +50,13 @@ get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
 list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cpp
-        src/core/handler.cc)
+        src/core/api_handler.cc
+        src/core/input_handler.cc)
 
 list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc)
 
 list(APPEND TEST_FILES tests/test_main.cc
-        tests/test_handler.cc)
+        tests/test_api_handler.cc)
 
 add_executable(my-league apps/my_league_main.cc ${CORE_SOURCE_FILES})
 target_include_directories(my-league PRIVATE include)
