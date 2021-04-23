@@ -1,17 +1,13 @@
 #include <iostream>
+#include <fstream>
 #include "handler.h"
 
 using namespace myleague;
 
-Handler::Handler(const std::string &api_key,
-                 const std::string &region,
+Handler::Handler(const std::string &region,
                  const std::string &locale) {
-  api_key_ = api_key;
-  region_ = region;
-  locale_ = locale;
-  
   base_url_ = kHttps + region + kDomain;
-  api_url_end_ = "?api_key=" + api_key;
+  api_url_end_ = "?api_key=" + ReadAPIKey();
 }
 
 std::string Handler::GetSummonerInfo(const std::string &summoner_name) const {
@@ -19,11 +15,12 @@ std::string Handler::GetSummonerInfo(const std::string &summoner_name) const {
   return HandleRequest(url);
 }
 
-std::string Handler::GetAllChampionMastery(const std::string &summoner_id) const {
-  std::string url = base_url_ + kMasteryEndpoint + summoner_id + api_url_end_;
+std::string Handler::GetTotalMasteryScore(const std::string &summoner_id) const {
+  std::string url = base_url_ + kTotalMasteryEndpoint + summoner_id + api_url_end_;
   return HandleRequest(url);
 }
 
+// Callback code adapted from https://gist.github.com/alghanmi/c5d7b761b2c9ab199157#file-curl_example-cpp
 size_t Handler::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
   ((std::string *) userp)->append((char *) contents, size * nmemb);
   return size * nmemb;
@@ -44,11 +41,17 @@ std::string Handler::HandleRequest(const std::string &url) {
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
-
-    if (res == CURLE_HTTP_NOT_FOUND) {
-      throw std::invalid_argument("Summoner name not found");
-    }
   }
   
   return readBuffer;
+}
+
+std::string Handler::ReadAPIKey() {
+  std::ifstream api_file(kFilepath);
+  std::string api_key;
+
+  getline(api_file, api_key);
+  api_file.close();
+
+  return api_key;
 }
