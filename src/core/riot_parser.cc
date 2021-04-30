@@ -17,8 +17,8 @@ SummonerInfo riotparser::ParseSummonerInfo(const json &raw_json) {
 
 RankedLeagueContainer riotparser::ParseRankedLeagues(const json &raw_json) {
   std::vector<RankedLeague> ranked_leagues;
-  
-  for (const auto& element : raw_json) {
+
+  for (const auto &element : raw_json) {
     std::string league_id = element.value("leagueId", "");
     std::string queue_type = element.value("queueType", "");
     std::string tier = element.value("tier", "");
@@ -47,7 +47,7 @@ RankedLeagueContainer riotparser::ParseRankedLeagues(const json &raw_json) {
                                 fresh_blood,
                                 hot_streak);
   }
-  
+
   return RankedLeagueContainer(ranked_leagues);
 }
 
@@ -57,5 +57,10 @@ Champion riotparser::ParseChampionInfo(const json &raw_json) {
   std::string title = raw_json.value("title", "");
   std::string short_bio = raw_json.value("shortBio", "");
   
-  return Champion(id, name, title, short_bio);
+  auto tactical_info = raw_json.at("tacticalInfo");
+  size_t style = tactical_info.value("style", 0);
+  size_t difficulty = tactical_info.value("difficulty", 0);
+  std::string damage_type = tactical_info.value("damageType", "");
+  
+  return Champion(id, name, title, short_bio, style, difficulty, damage_type);
 }

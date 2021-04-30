@@ -13,24 +13,24 @@ APIHandler::APIHandler(const std::string &region,
   api_url_end_ = "?api_key=" + ReadAPIKey();
 }
 
-SummonerInfo APIHandler::GetSummonerInfo(const std::string &summoner_name) const {
+SummonerInfo APIHandler::GetSummonerInfo(const std::string &summoner_name) const noexcept(false) {
   std::string url = base_url_ + kSummonerEndpoint + summoner_name + api_url_end_;
   json raw_json = json::parse(HandleRequest(url));
   return riotparser::ParseSummonerInfo(raw_json);
 }
 
-std::string APIHandler::GetTotalMasteryScore(const std::string &summoner_id) const {
+std::string APIHandler::GetTotalMasteryScore(const std::string &summoner_id) const noexcept(false) {
   std::string url = base_url_ + kTotalMasteryEndpoint + summoner_id + api_url_end_;
   return HandleRequest(url);
 }
 
-RankedLeagueContainer APIHandler::GetRankedLeagues(const std::string &summoner_id) const {
+RankedLeagueContainer APIHandler::GetRankedLeagues(const std::string &summoner_id) const noexcept(false) {
   std::string url = base_url_ + kRankedLeaguesEndpoint + summoner_id + api_url_end_;
   json raw_json = json::parse(HandleRequest(url));
   return riotparser::ParseRankedLeagues(raw_json);
 }
 
-Champion APIHandler::GetChampion(const std::string &champion_name) const {
+Champion APIHandler::GetChampion(const std::string &champion_name) const noexcept(false) {
   std::string url = kChampionEndpoint + champion_name + "/data";
   json raw_json = json::parse(HandleRequest(url));
   return riotparser::ParseChampionInfo(raw_json);
@@ -42,7 +42,7 @@ size_t APIHandler::WriteCallback(void *contents, size_t size, size_t nmemb, void
   return size * nmemb;
 }
 
-std::string APIHandler::HandleRequest(const std::string &url) {
+std::string APIHandler::HandleRequest(const std::string &url) noexcept(false) {
   CURL *curl;
   CURLcode res;
   std::string readBuffer;
@@ -60,7 +60,7 @@ std::string APIHandler::HandleRequest(const std::string &url) {
     long http_code;
     curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &http_code);
     if (http_code == 404) {
-      return kErrorMessage;
+      throw std::invalid_argument("Invalid query parameter");
     }
     
     curl_easy_cleanup(curl);

@@ -22,18 +22,18 @@ class APIHandler {
    * @param summoner_name The summoner name to get info on.
    * @return a SummonerInfo object.
    */
-  SummonerInfo GetSummonerInfo(const std::string &summoner_name) const;
+  SummonerInfo GetSummonerInfo(const std::string &summoner_name) const noexcept(false);
 
   /**
    * Retrieves the total mastery score for a given summoner.
    * @param summoner_id 
    * @return a string of a summoner's total mastery score.
    */
-  std::string GetTotalMasteryScore(const std::string &summoner_id) const;
+  std::string GetTotalMasteryScore(const std::string &summoner_id) const noexcept(false);
   
-  RankedLeagueContainer GetRankedLeagues(const std::string &summoner_id) const;
+  RankedLeagueContainer GetRankedLeagues(const std::string &summoner_id) const noexcept(false);
   
-  Champion GetChampion(const std::string &champion_name) const;
+  Champion GetChampion(const std::string &champion_name) const noexcept(false);
 
  private:
   const std::string kHttps = "https://";
@@ -59,7 +59,7 @@ class APIHandler {
    * @param url The URL to send a request to
    * @return The data received from the request
    */
-  static std::string HandleRequest(const std::string &url);
+  static std::string HandleRequest(const std::string &url) noexcept(false);
 
   /**
    * Writes a callback used in libcurl HTTP requests.

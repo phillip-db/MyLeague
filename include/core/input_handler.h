@@ -8,12 +8,14 @@ class InputHandler {
  public:
   enum Request {
     Summoner,
-    Mastery
+    Mastery,
+    Champion,
+    Rank
   };
   
   InputHandler();
   
-  
+  void ReadInput(Request request) const;
   
  private:
   APIHandler api_handler_;
