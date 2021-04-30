@@ -64,7 +64,9 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cc
         src/core/api_handler.cc
         src/core/input_handler.cc
-        src/core/summoner_info.cc)
+        src/core/summoner_info.cc
+        src/core/ranked_league.cc
+        src/core/ranked_league_container.cc)
 
 list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc)
 

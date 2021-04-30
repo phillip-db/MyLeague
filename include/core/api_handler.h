@@ -30,12 +30,15 @@ class APIHandler {
    * @return a string of a summoner's total mastery score.
    */
   std::string GetTotalMasteryScore(const std::string &summoner_id) const;
+  
+  RankedLeagueContainer GetRankedLeagues(const std::string &summoner_id) const;
 
  private:
   const std::string kHttps = "https://";
   const std::string kDomain = ".api.riotgames.com";
   const std::string kSummonerEndpoint = "/lol/summoner/v4/summoners/by-name/";
   const std::string kTotalMasteryEndpoint = "/lol/champion-mastery/v4/scores/by-summoner/";
+  const std::string kRankedLeaguesEndpoint = "/lol/league/v4/entries/by-summoner/";
   const std::string kFilepath = "data/no_commit_api_key.txt";
   static const std::string kErrorMessage;
 

@@ -24,6 +24,12 @@ std::string APIHandler::GetTotalMasteryScore(const std::string &summoner_id) con
   return HandleRequest(url);
 }
 
+RankedLeagueContainer APIHandler::GetRankedLeagues(const std::string &summoner_id) const {
+  std::string url = base_url_ + kRankedLeaguesEndpoint + summoner_id + api_url_end_;
+  json raw_json = json::parse(HandleRequest(url));
+  return riotparser::ParseRankedLeagues(raw_json);
+}
+
 // Callback code adapted from https://gist.github.com/alghanmi/c5d7b761b2c9ab199157#file-curl_example-cpp
 size_t APIHandler::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
   ((std::string *) userp)->append((char *) contents, size * nmemb);
