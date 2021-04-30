@@ -50,3 +50,12 @@ RankedLeagueContainer riotparser::ParseRankedLeagues(const json &raw_json) {
   
   return RankedLeagueContainer(ranked_leagues);
 }
+
+Champion riotparser::ParseChampionInfo(const json &raw_json) {
+  size_t id = raw_json.value("id", 0);
+  std::string name = raw_json.value("name", "");
+  std::string title = raw_json.value("title", "");
+  std::string short_bio = raw_json.value("shortBio", "");
+  
+  return Champion(id, name, title, short_bio);
+}

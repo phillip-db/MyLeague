@@ -32,6 +32,8 @@ class APIHandler {
   std::string GetTotalMasteryScore(const std::string &summoner_id) const;
   
   RankedLeagueContainer GetRankedLeagues(const std::string &summoner_id) const;
+  
+  Champion GetChampion(const std::string &champion_name) const;
 
  private:
   const std::string kHttps = "https://";
@@ -40,6 +42,7 @@ class APIHandler {
   const std::string kTotalMasteryEndpoint = "/lol/champion-mastery/v4/scores/by-summoner/";
   const std::string kRankedLeaguesEndpoint = "/lol/league/v4/entries/by-summoner/";
   const std::string kFilepath = "data/no_commit_api_key.txt";
+  const std::string kChampionEndpoint = "https://cdn.communitydragon.org/latest/champion/";
   static const std::string kErrorMessage;
 
   std::string base_url_;
