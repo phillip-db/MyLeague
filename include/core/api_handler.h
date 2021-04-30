@@ -53,7 +53,6 @@ class APIHandler {
   const std::string kRankedLeaguesEndpoint = "/lol/league/v4/entries/by-summoner/";
   const std::string kFilepath = "data/no_commit_api_key.txt";
   const std::string kChampionEndpoint = "https://cdn.communitydragon.org/latest/champion/";
-  static const std::string kErrorMessage;
 
   std::string base_url_;
   std::string api_url_end_;

@@ -16,7 +16,7 @@ SummonerInfo::SummonerInfo(const std::string &id,
       profile_icon_id_(profile_icon_id),
       revision_date_(revision_date),
       summoner_level_(summoner_level) {}
-      
+
 const std::string &SummonerInfo::GetId() const {
   return id_;
 }

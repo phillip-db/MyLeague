@@ -5,8 +5,6 @@
 using namespace myleague;
 using json = nlohmann::json;
 
-const std::string APIHandler::kErrorMessage = "Error";
-
 APIHandler::APIHandler(const std::string &region,
                        const std::string &locale) {
   base_url_ = kHttps + region + kDomain;

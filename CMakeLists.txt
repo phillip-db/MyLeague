@@ -95,13 +95,13 @@ ci_make_app(
 ci_make_app(
         APP_NAME my-league-test
         CINDER_PATH ${CINDER_PATH}
-        SOURCES tests/test_main.cc ${SOURCE_FILES} ${TEST_FILES}
+        SOURCES tests/test_main.cc ${CORE_SOURCE_FILES} ${TEST_FILES}
         INCLUDES include
         LIBRARIES catch2
 )
 
-target_link_libraries(my-league-test ${CURL_LIBRARIES})
 target_link_libraries(my-league-app ${CURL_LIBRARIES})
+target_link_libraries(my-league-test ${CURL_LIBRARIES} nlohmann_json::nlohmann_json)
 
 if (MSVC)
     set_property(TARGET my-league-test APPEND_STRING PROPERTY LINK_FLAGS " /SUBSYSTEM:CONSOLE")
