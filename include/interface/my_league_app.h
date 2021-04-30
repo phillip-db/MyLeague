@@ -16,7 +16,8 @@ class MyLeagueApp : public ci::app::App {
 
   void draw() override;
 
-  const double kWindowSize = 700;
+  const double kWindowWidth = 1200;
+  const double kWindowHeight = 700;
   const double kMargin = 100;
  private:
   ci::Color8u kBackgroundColor = ci::Color8u(63, 17, 128); // shade of purple

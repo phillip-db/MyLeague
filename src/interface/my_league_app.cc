@@ -3,13 +3,13 @@
 using namespace myleague;
 
 MyLeagueApp::MyLeagueApp() {
-  ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
+  ci::app::setWindowSize((int) kWindowWidth, (int) kWindowHeight);
 }
 
 void MyLeagueApp::draw() {
   ci::gl::clear(kBackgroundColor);
   ci::gl::pushModelMatrix();
-  ci::gl::translate(kWindowSize / 2.0, kWindowSize / 2.0);
+  ci::gl::translate(kWindowWidth / 2.0f, kWindowHeight / 2.0f);
   ci::gl::rotate(0);
   ci::gl::drawStringCentered(
       "Welcome to myLeague!", glm::vec2(0, 0), ci::Color("White"),

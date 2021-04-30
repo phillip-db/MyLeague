@@ -3,6 +3,9 @@
 #include "core/api_handler.h"
 
 using namespace myleague;
+using json = nlohmann::json;
+
+const std::string APIHandler::kErrorMessage = "Error";
 
 APIHandler::APIHandler(const std::string &region,
                        const std::string &locale) {
@@ -10,9 +13,10 @@ APIHandler::APIHandler(const std::string &region,
   api_url_end_ = "?api_key=" + ReadAPIKey();
 }
 
-std::string APIHandler::GetSummonerInfo(const std::string &summoner_name) const {
+SummonerInfo APIHandler::GetSummonerInfo(const std::string &summoner_name) const {
   std::string url = base_url_ + kSummonerEndpoint + summoner_name + api_url_end_;
-  return HandleRequest(url);
+  json raw_json = json::parse(HandleRequest(url));
+  return riotparser::ParseSummonerInfo(raw_json);
 }
 
 std::string APIHandler::GetTotalMasteryScore(const std::string &summoner_id) const {
@@ -40,6 +44,13 @@ std::string APIHandler::HandleRequest(const std::string &url) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
     res = curl_easy_perform(curl);
+    
+    long http_code;
+    curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &http_code);
+    if (http_code == 404) {
+      return kErrorMessage;
+    }
+    
     curl_easy_cleanup(curl);
   }
 

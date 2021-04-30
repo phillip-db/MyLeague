@@ -1,5 +1,6 @@
 #pragma once
 #include <curl/curl.h>
+#include "riot_parser.h"
 
 #include <string>
 namespace myleague {
@@ -19,9 +20,9 @@ class APIHandler {
   /**
    * Retrieves info on the given summoner name.
    * @param summoner_name The summoner name to get info on.
-   * @return a raw JSON as a string containing summoner info.
+   * @return a SummonerInfo object.
    */
-  std::string GetSummonerInfo(const std::string &summoner_name) const;
+  SummonerInfo GetSummonerInfo(const std::string &summoner_name) const;
 
   /**
    * Retrieves the total mastery score for a given summoner.
@@ -36,6 +37,7 @@ class APIHandler {
   const std::string kSummonerEndpoint = "/lol/summoner/v4/summoners/by-name/";
   const std::string kTotalMasteryEndpoint = "/lol/champion-mastery/v4/scores/by-summoner/";
   const std::string kFilepath = "data/no_commit_api_key.txt";
+  static const std::string kErrorMessage;
 
   std::string base_url_;
   std::string api_url_end_;

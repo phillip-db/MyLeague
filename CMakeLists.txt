@@ -36,6 +36,17 @@ FetchContent_Declare(
         GIT_TAG v2.11.1
 )
 
+#Add json library
+FetchContent_Declare(json
+        GIT_REPOSITORY https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent.git
+        GIT_TAG v3.7.3)
+
+FetchContent_GetProperties(json)
+if(NOT json_POPULATED)
+    FetchContent_Populate(json)
+    add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
 # Adds Catch2 testing library
 FetchContent_GetProperties(catch2)
 if (NOT catch2_POPULATED)
@@ -47,11 +58,13 @@ endif ()
 get_filename_component(CINDER_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../" ABSOLUTE)
 get_filename_component(APP_PATH "${CMAKE_CURRENT_SOURCE_DIR}/" ABSOLUTE)
 
+
 include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 
-list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cpp
+list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cc
         src/core/api_handler.cc
-        src/core/input_handler.cc)
+        src/core/input_handler.cc
+        src/core/summoner_info.cc)
 
 list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc)
 
@@ -65,7 +78,7 @@ target_include_directories(my-league PRIVATE include)
 set(CURL_LIBRARY "-lcurl")
 find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIR})
-target_link_libraries(my-league ${CURL_LIBRARIES})
+target_link_libraries(my-league ${CURL_LIBRARIES} nlohmann_json::nlohmann_json)
 
 ci_make_app(
         APP_NAME my-league-app

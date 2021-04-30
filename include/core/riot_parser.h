@@ -1,13 +1,19 @@
 #pragma once
 
+#include "summoner_info.h"
+#include "nlohmann/json.hpp"
+
+using json = nlohmann::json;
+
 namespace myleague {
 
-class riot_parser {
- public:
+namespace riotparser {
 
- private:
+SummonerInfo ParseSummonerInfo(const json& raw_json);
 
-};
+
+
+} // namespace riotparser
 
 } // namespace myleague
 
