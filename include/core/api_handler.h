@@ -26,13 +26,23 @@ class APIHandler {
 
   /**
    * Retrieves the total mastery score for a given summoner.
-   * @param summoner_id 
+   * @param summoner_id A summoner's unique ID
    * @return a string of a summoner's total mastery score.
    */
   std::string GetTotalMasteryScore(const std::string &summoner_id) const noexcept(false);
   
+  /**
+   * Retrieves the ranked statistics for a given summoner.
+   * @param summoner_id A summoner's unique ID
+   * @return A container of ranked flex/soloduo leagues.
+   */
   RankedLeagueContainer GetRankedLeagues(const std::string &summoner_id) const noexcept(false);
   
+  /**
+   * Retrieves basic statistics on the given champion.
+   * @param champion_name The name of the Champion
+   * @return A champion object with info in the given champion
+   */
   Champion GetChampion(const std::string &champion_name) const noexcept(false);
 
  private:

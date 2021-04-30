@@ -3,6 +3,9 @@
 #include <string>
 namespace myleague {
 
+/**
+ * Class representing the statistics of a summoner's ranked league (Flex/SoloDuo)
+ */
 class RankedLeague {
  public:
   RankedLeague(const std::string &league_id,
@@ -19,6 +22,7 @@ class RankedLeague {
                bool fresh_blood,
                bool hot_streak);
   
+  // TODO: Include visualization for the different ranked stats
   const std::string &GetLeagueId() const;
   const std::string &GetQueueType() const;
   const std::string &GetTier() const;

@@ -4,8 +4,14 @@
 
 namespace myleague {
 
+/**
+ * Class that handles user input from the console for the various API requests
+ */
 class InputHandler {
  public:
+  /**
+   * Enum representing the various API requests a user can make
+   */
   enum Request {
     Summoner,
     Mastery,
@@ -15,6 +21,10 @@ class InputHandler {
   
   InputHandler();
   
+  /**
+   * Read user input from console and call the appropriate API method
+   * @param request The type of request to execute
+   */
   void ReadInput(Request request) const;
   
  private:

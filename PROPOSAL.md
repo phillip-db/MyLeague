@@ -11,8 +11,8 @@ assignment.
 
 From the ideal gases project, I have experience in manipulating the cinder application to display different shapes/text.
 
-I am interested in this project because I often play League of Legends, but the official, built-in stats are difficult
-to navigate to, only display your stats, and are not visually appealing. Being able to access stats at any time about
+I am interested in this project because I often play League of Legends, but the official, built-in statisticsanalyzer are difficult
+to navigate to, only display your statisticsanalyzer, and are not visually appealing. Being able to access statisticsanalyzer at any time about
 myself, my friends, or various champions would be helpful when I play the game. Completing this project would be
 beneficial for myself and my friends because it would be used often.
 
@@ -25,7 +25,7 @@ beneficial for myself and my friends because it would be used often.
 
 ### Week Two
 
-* Create classes to represent players, champions, and storage of stats
+* Create classes to represent players, champions, and storage of statisticsanalyzer
 * Implement calls to the API that are used after searches to create/store values in classes
   * Ensure that calls are able to accept champion/player names passed in as parameter
 * Implement various filtering and/or analysis functions for player and champion statistics

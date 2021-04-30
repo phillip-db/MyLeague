@@ -68,7 +68,8 @@ list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cc
         src/core/ranked_league.cc
         src/core/ranked_league_container.cc
         src/core/champion.cc
-        src/core/champion_filterer.cc)
+        src/core/champion_filterer.cc
+        src/core/statistics_analyzer.cc)
 
 list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc)
 

@@ -4,7 +4,7 @@ using namespace myleague;
 
 using namespace championfilterer;
 
-std::vector<Champion> SelectByDifficulty(const std::vector<Champion> &champions,
+std::vector<Champion> championfilterer::SelectByDifficulty(const std::vector<Champion> &champions,
                                                 Champion::Difficulty difficulty) {
   std::vector<Champion> selected;
   
@@ -17,7 +17,7 @@ std::vector<Champion> SelectByDifficulty(const std::vector<Champion> &champions,
   return selected;
 }
 
-std::vector<Champion> SelectByStyle(const std::vector<Champion> &champions, size_t style) {
+std::vector<Champion> championfilterer::SelectByStyle(const std::vector<Champion> &champions, size_t style) {
   std::vector<Champion> selected;
 
   for (const Champion& champion : champions) {
@@ -29,7 +29,7 @@ std::vector<Champion> SelectByStyle(const std::vector<Champion> &champions, size
   return selected;
 }
 
-std::vector<Champion> SelectByDamageType(const std::vector<Champion> &champions, std::string damage_type) {
+std::vector<Champion> championfilterer::SelectByDamageType(const std::vector<Champion> &champions, std::string damage_type) {
   std::vector<Champion> selected;
 
   for (const Champion& champion : champions) {

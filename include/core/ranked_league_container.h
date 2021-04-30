@@ -5,6 +5,9 @@
 #include <vector>
 namespace myleague {
 
+/**
+ * Wrapper class used in deserialization to contain both Flex and SoloDuo queue ranked leagues
+ */
 class RankedLeagueContainer {
  public:
   explicit RankedLeagueContainer(const std::vector<RankedLeague> &ranked_leagues);
