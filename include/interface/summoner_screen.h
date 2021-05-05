@@ -19,6 +19,7 @@ class SummonerScreen : public Screen {
   const ci::Font kNameFont = ci::Font("Arial", 50);
   const ci::Font kRankFont = ci::Font("Arial", 25);
   const std::string kIconEndpoint = "https://cdn.communitydragon.org/latest/profile-icon/";
+  const std::string kRankIconEndpoint = "https://img.rankedboost.com/wp-content/uploads/2014/09/Season_2019_-_";
   
   float width_;
   float height_;
@@ -33,7 +34,7 @@ class SummonerScreen : public Screen {
   void ReadSummonerName();
   void LoadImages();
   void DrawBasicInfo() const;
-  void DrawSoloRankInfo() const;
+  void DrawRankInfo(bool is_solo, const glm::vec2& translation) const;
 };
 
 }

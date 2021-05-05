@@ -28,7 +28,20 @@ RankedLeague::RankedLeague(const std::string &league_id,
       inactive_(inactive),
       fresh_blood_(fresh_blood),
       hot_streak_(hot_streak) {}
-      
+
+std::string RankedLeague::CapitalizeFirst(const std::string& str) {
+  if (str.length() == 0) {
+    return str;
+  }
+  
+  std::string new_str = str;
+  for (size_t i = 1; i < str.length(); i++) {
+    new_str[i] = tolower(str[i]);
+  }
+  
+  return new_str;
+}
+
 const std::string &RankedLeague::GetLeagueId() const {
   return league_id_;
 }

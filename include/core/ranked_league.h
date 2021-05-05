@@ -24,7 +24,8 @@ class RankedLeague {
                bool fresh_blood,
                bool hot_streak);
   
-  // TODO: Include visualization for the different ranked stats
+  static std::string CapitalizeFirst(const std::string& str);
+  
   const std::string &GetLeagueId() const;
   const std::string &GetQueueType() const;
   const std::string &GetTier() const;
