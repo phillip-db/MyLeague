@@ -8,6 +8,8 @@ namespace myleague {
  */
 class RankedLeague {
  public:
+  RankedLeague() = default;
+  
   RankedLeague(const std::string &league_id,
                const std::string &queue_type,
                const std::string &tier,
@@ -43,13 +45,13 @@ class RankedLeague {
   std::string rank_;
   std::string summoner_id_;
   std::string summoner_name_;
-  size_t league_points_;
-  size_t wins_;
-  size_t losses_;
-  bool veteran_;
-  bool inactive_;
-  bool fresh_blood_;
-  bool hot_streak_;
+  size_t league_points_{};
+  size_t wins_{};
+  size_t losses_{};
+  bool veteran_{};
+  bool inactive_{};
+  bool fresh_blood_{};
+  bool hot_streak_{};
 };
 
 } // namespace myleague

@@ -27,7 +27,6 @@ std::vector<Champion> ReadChampionNames() {
 }
 
 int main() {
-  std::vector<Champion> sample_champs = ReadChampionNames();
   InputHandler h;
   
   h.ReadInput(InputHandler::Summoner);
@@ -41,6 +40,7 @@ int main() {
   std::cout << "Solo/Duo Ranked winrate: "
             << statisticsanalyzer::ComputeRankedWinrate(a.GetRankedLeagues(id).GetRankedLeague(true)) << std::endl;
   std::cout << "Most difficult champions from sample: ";
+  std::vector<Champion> sample_champs = ReadChampionNames();
   std::vector<Champion>
       hardest_champs = championfilterer::SelectByDifficulty(sample_champs, Champion::Difficulty::Hard);
   for (const Champion &c : hardest_champs) {

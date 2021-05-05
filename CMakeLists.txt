@@ -71,7 +71,9 @@ list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cc
         src/core/champion_filterer.cc
         src/core/statistics_analyzer.cc)
 
-list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc)
+list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc
+        src/interface/screen.cc
+        src/interface/main_screen.cc)
 
 list(APPEND TEST_FILES tests/test_main.cc
         tests/test_api_handler.cc)
@@ -88,7 +90,7 @@ target_link_libraries(my-league ${CURL_LIBRARIES} nlohmann_json::nlohmann_json)
 ci_make_app(
         APP_NAME my-league-app
         CINDER_PATH ${CINDER_PATH}
-        SOURCES apps/my_league_app_main.cc ${INTERFACE_SOURCE_FILES}
+        SOURCES apps/my_league_app_main.cc ${INTERFACE_SOURCE_FILES} ${CORE_SOURCE_FILES}
         INCLUDES include
 )
 
@@ -100,7 +102,7 @@ ci_make_app(
         LIBRARIES catch2
 )
 
-target_link_libraries(my-league-app ${CURL_LIBRARIES})
+target_link_libraries(my-league-app ${CURL_LIBRARIES} nlohmann_json::nlohmann_json)
 target_link_libraries(my-league-test ${CURL_LIBRARIES} nlohmann_json::nlohmann_json)
 
 if (MSVC)

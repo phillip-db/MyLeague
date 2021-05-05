@@ -1,9 +1,8 @@
 #pragma once
 
-#include "cinder/app/App.h"
-#include "cinder/app/RendererGl.h"
-#include "cinder/gl/gl.h"
-#include "core/api_handler.h"
+#include "screen.h"
+#include <cinder/app/App.h>
+#include <cinder/app/RendererGl.h>
 
 namespace myleague {
 
@@ -12,15 +11,25 @@ namespace myleague {
  */
 class MyLeagueApp : public ci::app::App {
  public:
+  const ci::Color kFontColor = ci::Color("White");
+  
   MyLeagueApp();
 
   void draw() override;
+  
+  void setup() override;
+  
+  void DrawTitle() const;
+  
+  void ResetApp() const;
 
-  const double kWindowWidth = 1200;
-  const double kWindowHeight = 700;
+  const float kWindowWidth = 1200;
+  const float kWindowHeight = 700;
   const double kMargin = 100;
  private:
-  ci::Color8u kBackgroundColor = ci::Color8u(63, 17, 128); // shade of purple
+  const ci::Color8u kBackgroundColor = ci::Color8u(46, 56, 73); // shade of cyan
+  ci::gl::Texture2dRef texture_;
+  Screen screen_;
 };
 
 } // namespace myleague

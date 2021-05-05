@@ -14,9 +14,9 @@ class Champion {
    * An enum to represent the three difficulties a Champion falls under
    */
   enum Difficulty {
-    Easy,
-    Medium,
-    Hard
+    kEasy,
+    kMedium,
+    kHard
   };
 
   Champion(size_t id,

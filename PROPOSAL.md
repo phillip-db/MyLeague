@@ -25,7 +25,7 @@ beneficial for myself and my friends because it would be used often.
 
 ### Week Two
 
-* Create classes to represent players, champions, and storage of statisticsanalyzer
+* Create classes to represent players, champions, and storage of statistics
 * Implement calls to the API that are used after searches to create/store values in classes
   * Ensure that calls are able to accept champion/player names passed in as parameter
 * Implement various filtering and/or analysis functions for player and champion statistics

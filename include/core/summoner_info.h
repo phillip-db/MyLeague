@@ -8,6 +8,8 @@ namespace myleague {
  */
 class SummonerInfo {
  public:
+  SummonerInfo() = default;
+  
   SummonerInfo(const std::string &id,
                const std::string &account_id,
                const std::string &puuid,
@@ -28,9 +30,9 @@ class SummonerInfo {
   std::string account_id_;
   std::string puuid_;
   std::string name_;
-  size_t profile_icon_id_;
-  size_t revision_date_;
-  size_t summoner_level_;
+  size_t profile_icon_id_{};
+  size_t revision_date_{};
+  size_t summoner_level_{};
 };
 
 } //namespace myleague
