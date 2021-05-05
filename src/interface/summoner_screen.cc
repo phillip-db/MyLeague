@@ -42,8 +42,8 @@ void SummonerScreen::DrawBasicInfo() const {
   float image_size = 200;
 
   gl::pushModelMatrix();
-  gl::translate(width_ / 8, height_ / 8);
-  gl::drawString(summoner_name_, vec2(0, 0), kFontColor, kNameFont);
+  gl::translate(width_ / 10, height_ / 8);
+  gl::drawStringCentered(summoner_info_.GetName(), vec2(image_size / 2, 0), kFontColor, kNameFont);
   gl::draw(summoner_icon_, Rectf(vec2(0, padding), vec2(image_size, image_size + padding)));
   gl::drawString(mastery, vec2(0, padding * 2 + image_size), kFontColor, kRankFont);
   gl::drawString(level, vec2(0, padding * 1.5 + image_size), kFontColor, kRankFont);
@@ -60,11 +60,21 @@ void SummonerScreen::LoadImages() {
   RankedLeague flex = ranked_leagues_.GetRankedLeague(false);
 
   std::string solo_url = kRankIconEndpoint + RankedLeague::CapitalizeFirst(solo.GetTier()) + "_1.png";
+
+  if (solo.GetTier().empty()) {
+    solo_url = "https://img.rankedboost.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png";
+  }
+
   std::cout << solo_url << std::endl;
   image = loadImage(loadUrl(solo_url));
   ranked_solo_icon_ = Texture2d::create(image);
 
   std::string flex_url = kRankIconEndpoint + RankedLeague::CapitalizeFirst(flex.GetTier()) + "_1.png";
+
+  if (flex.GetTier().empty()) {
+    flex_url = "https://img.rankedboost.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png";
+  }
+
   std::cout << flex_url << std::endl;
   image = loadImage(loadUrl(flex_url));
   ranked_flex_icon_ = Texture2d::create(image);
@@ -78,6 +88,7 @@ void SummonerScreen::DrawRankInfo(bool is_solo, const vec2 &translation) const {
           + std::to_string(std::round(statisticsanalyzer::ComputeRankedWinrate(ranked_league) * 100)).substr(0, 2)
           + "%";
   std::string lp = std::to_string(ranked_league.GetLeaguePoints()) + " LP";
+  std::string num_games = std::to_string(ranked_league.GetWins() + ranked_league.GetLosses());
 
   float padding = 80;
   float img_size = 200;
@@ -86,14 +97,15 @@ void SummonerScreen::DrawRankInfo(bool is_solo, const vec2 &translation) const {
 
   gl::pushModelMatrix();
   gl::translate(translation.x, translation.y);
-  gl::drawString(rank, vec2(0, 0), kFontColor, kNameFont);
-  gl::drawString(lp, vec2(0, padding), kFontColor, kNameFont);
-  
   if (is_solo) {
+    gl::drawString("Solo/Duo Queue", vec2(0, 0), kFontColor, kNameFont);
     gl::draw(ranked_solo_icon_, img_constraint);
   } else {
+    gl::drawString("Flex Queue", vec2(0, 0), kFontColor, kNameFont);
     gl::draw(ranked_flex_icon_, img_constraint);
   }
-  
+  gl::drawString(rank, vec2(0, padding), kFontColor, kNameFont);
+  gl::drawString(lp + " | " + num_games + " Games", vec2(0, padding * 2), kFontColor, kNameFont);
+
   gl::popModelMatrix();
 }

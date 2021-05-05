@@ -16,7 +16,7 @@ SummonerInfo riotparser::ParseSummonerInfo(const json &raw_json) {
 }
 
 RankedLeagueContainer riotparser::ParseRankedLeagues(const json &raw_json) {
-  std::vector<RankedLeague> ranked_leagues;
+  std::vector<RankedLeague> ranked_leagues(2);
 
   for (const auto &element : raw_json) {
     std::string league_id = element.value("leagueId", "");
@@ -32,20 +32,26 @@ RankedLeagueContainer riotparser::ParseRankedLeagues(const json &raw_json) {
     bool inactive = element.value("inactive", false);
     bool fresh_blood = element.value("freshBlood", false);
     bool hot_streak = element.value("hotStreak", false);
-
-    ranked_leagues.emplace_back(league_id,
-                                queue_type,
-                                tier,
-                                rank,
-                                summoner_id,
-                                summoner_name,
-                                league_points,
-                                wins,
-                                losses,
-                                veteran,
-                                inactive,
-                                fresh_blood,
-                                hot_streak);
+    
+    RankedLeague ranked_league(league_id,
+                               queue_type,
+                               tier,
+                               rank,
+                               summoner_id,
+                               summoner_name,
+                               league_points,
+                               wins,
+                               losses,
+                               veteran,
+                               inactive,
+                               fresh_blood,
+                               hot_streak);
+    
+    if (queue_type == "RANKED_SOLO_5x5") {
+      ranked_leagues[1] = ranked_league;
+    } else if (queue_type == "RANKED_FLEX_SR") {
+      ranked_leagues[0] = ranked_league;
+    }
   }
 
   return RankedLeagueContainer(ranked_leagues);
