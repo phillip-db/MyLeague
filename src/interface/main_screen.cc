@@ -39,7 +39,7 @@ void MainScreen::DrawWelcomeText() const {
   ci::gl::pushModelMatrix();
   ci::gl::translate(width_ / 2, height_ / 3); // middle of window
   ci::gl::drawStringCentered("Welcome to myLeague!", vec2(0, 0), kFontColor, kWelcomeFont);
-  ci::gl::drawStringCentered("Click either the Summoner or Champion button to begin",
+  ci::gl::drawStringCentered("Press S for Summoner stats and C for Champion stats",
                              vec2(0, 50),
                              kFontColor,
                              kWelcomeFont);

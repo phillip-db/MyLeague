@@ -42,7 +42,7 @@ int main() {
   std::cout << "Most difficult champions from sample: ";
   std::vector<Champion> sample_champs = ReadChampionNames();
   std::vector<Champion>
-      hardest_champs = championfilterer::SelectByDifficulty(sample_champs, Champion::Difficulty::Hard);
+      hardest_champs = championfilterer::SelectByDifficulty(sample_champs, Champion::Difficulty::kHard);
   for (const Champion &c : hardest_champs) {
     std::cout << c << " ";
   }

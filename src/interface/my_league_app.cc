@@ -45,6 +45,8 @@ void MyLeagueApp::keyDown(KeyEvent event) {
       } else if (event.getCode() == KeyEvent::KEY_c) {
         auto *champion = new ChampionScreen(kWindowWidth, kWindowHeight);
         screen_ = champion;
+      } else if (event.getCode() == KeyEvent::KEY_ESCAPE) {
+        quit();
       }
       break;
     case Screen::kSummoner:

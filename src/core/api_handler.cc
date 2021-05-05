@@ -44,7 +44,6 @@ std::string APIHandler::HandleRequest(const std::string &url) noexcept(false) {
   CURL *curl;
   CURLcode res;
   std::string readBuffer;
-  // std::cout << "Request " << url << std::endl;
 
   curl = curl_easy_init();
   if (curl) {
