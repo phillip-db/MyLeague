@@ -73,7 +73,9 @@ list(APPEND CORE_SOURCE_FILES src/core/riot_parser.cc
 
 list(APPEND INTERFACE_SOURCE_FILES src/interface/my_league_app.cc
         src/interface/screen.cc
-        src/interface/main_screen.cc)
+        src/interface/main_screen.cc
+        src/interface/summoner_screen.cc
+        src/interface/champion_screen.cc)
 
 list(APPEND TEST_FILES tests/test_main.cc
         tests/test_api_handler.cc)

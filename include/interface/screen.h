@@ -14,17 +14,29 @@ namespace myleague {
  */
 class Screen {
  public:
-  Screen(float width, float height);
+  enum ScreenType {
+    kMain,
+    kSummoner,
+    kChampion
+  };
+  
+  Screen(float width, float height, ScreenType screen_type);
 
-  void Display() const;
+  virtual void Display() const;
 
   void DrawButton(float x, float y, const cinder::Color &color, const std::string &label, float size) const;
   
+  float GetWidth() const;
+  float GetHeight() const;
+  ScreenType GetScreenType() const;
  private:
   const ci::Font kButtonFont = ci::Font("Arial", 12);
+  
   float width_;
   float height_;
-
+  ScreenType screen_type_;
+ protected:
+  const ci::Color kFontColor = ci::Color("White");
 };
 
 } // namespace myleague
