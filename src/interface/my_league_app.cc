@@ -59,6 +59,8 @@ void MyLeagueApp::keyDown(KeyEvent event) {
       if (event.getCode() == KeyEvent::KEY_ESCAPE) {
         auto *main = new MainScreen(kWindowWidth, kWindowHeight);
         screen_ = main;
+      } else if (event.getCode() == KeyEvent::KEY_RETURN) {
+        champions_ = ChampionScreen::BuildChampionList();
       }
       break;
   }

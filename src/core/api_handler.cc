@@ -11,26 +11,38 @@ APIHandler::APIHandler(const std::string &region,
   api_url_end_ = "?api_key=" + ReadAPIKey();
 }
 
-SummonerInfo APIHandler::GetSummonerInfo(const std::string &summoner_name) const noexcept(false) {
+SummonerInfo APIHandler::GetSummonerInfo(const std::string &summoner_name) const {
   std::string url = base_url_ + kSummonerEndpoint + summoner_name + api_url_end_;
-  json raw_json = json::parse(HandleRequest(url));
+  std::string raw_str = HandleRequest(url);
+
+  if (raw_str.empty()) {
+    return SummonerInfo();
+  }
+  
+  json raw_json = json::parse(raw_str);
   return riotparser::ParseSummonerInfo(raw_json);
 }
 
-std::string APIHandler::GetTotalMasteryScore(const std::string &summoner_id) const noexcept(false) {
+std::string APIHandler::GetTotalMasteryScore(const std::string &summoner_id) const {
   std::string url = base_url_ + kTotalMasteryEndpoint + summoner_id + api_url_end_;
   return HandleRequest(url);
 }
 
-RankedLeagueContainer APIHandler::GetRankedLeagues(const std::string &summoner_id) const noexcept(false) {
+RankedLeagueContainer APIHandler::GetRankedLeagues(const std::string &summoner_id) const {
   std::string url = base_url_ + kRankedLeaguesEndpoint + summoner_id + api_url_end_;
   json raw_json = json::parse(HandleRequest(url));
   return riotparser::ParseRankedLeagues(raw_json);
 }
 
-Champion APIHandler::GetChampion(const std::string &champion_name) const noexcept(false) {
+Champion APIHandler::GetChampion(const std::string &champion_name) const {
   std::string url = kChampionEndpoint + champion_name + "/data";
-  json raw_json = json::parse(HandleRequest(url));
+  std::string raw_str = HandleRequest(url);
+
+  if (raw_str.empty()) {
+    return Champion();
+  }
+
+  json raw_json = json::parse(raw_str);
   return riotparser::ParseChampionInfo(raw_json);
 }
 
@@ -53,13 +65,13 @@ std::string APIHandler::HandleRequest(const std::string &url) noexcept(false) {
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
     res = curl_easy_perform(curl);
-    
+
     long http_code;
     curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &http_code);
     if (http_code == 404) {
-      throw std::invalid_argument("Invalid query parameter");
+      return "";
     }
-    
+
     curl_easy_cleanup(curl);
   }
 

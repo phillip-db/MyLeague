@@ -1,3 +1,4 @@
+#include <sstream>
 #include "core/champion.h"
 
 using namespace myleague;
@@ -48,4 +49,26 @@ size_t Champion::GetDifficulty() const {
 
 const std::string &Champion::GetDamageType() const {
   return damage_type_;
+}
+
+std::vector<std::string> Champion::SplitBio(size_t num_words) const {
+  std::istringstream ss(short_bio_);
+  std::string word;
+  size_t count = 0;
+  std::string line;
+  std::vector<std::string> split_bio; 
+  
+  while (ss >> word) {
+    count++;
+    line += word;
+    if (count % num_words == 0) {
+      split_bio.push_back(line);
+      line = "";
+    } else {
+      line += " ";
+    }
+  }
+  split_bio[split_bio.size() - 1] = split_bio.back().append("...");
+  
+  return split_bio;
 }

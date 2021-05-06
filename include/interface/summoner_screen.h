@@ -20,6 +20,8 @@ class SummonerScreen : public Screen {
   const ci::Font kRankFont = ci::Font("Arial", 25);
   const std::string kIconEndpoint = "https://cdn.communitydragon.org/latest/profile-icon/";
   const std::string kRankIconEndpoint = "https://img.rankedboost.com/wp-content/uploads/2014/09/Season_2019_-_";
+  constexpr static float kPadding = 80;
+  constexpr static float kImgSize = 200;
   
   float width_;
   float height_;

@@ -18,6 +18,8 @@ class Champion {
     kMedium,
     kHard
   };
+  
+  Champion() = default;
 
   Champion(size_t id,
            const std::string &name,
@@ -34,6 +36,12 @@ class Champion {
    * @return an output stream of only the champion's name
    */
   friend std::ostream &operator<<(std::ostream &os, const Champion &champion);
+  
+  std::vector<std::string> SplitBio(size_t num_words) const;
+
+  static std::string ReadChampionName();
+  
+  static std::vector<Champion> BuildChampionList();
 
   size_t GetId() const;
   const std::string &GetName() const;
@@ -44,12 +52,15 @@ class Champion {
   const std::string &GetDamageType() const;
   
  private:
-  size_t id_;
+  static const std::string kAll;
+  static const std::string kExit;
+  
+  size_t id_{};
   std::string name_;
   std::string title_;
   std::string short_bio_;
-  size_t style_; // What playstyle the champion falls under, represented as a number
-  size_t difficulty_;
+  size_t style_{}; // What playstyle the champion falls under, represented as a number
+  size_t difficulty_{};
   std::string damage_type_;
 };
 
