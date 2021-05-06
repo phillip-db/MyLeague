@@ -23,6 +23,7 @@ void ChampionScreen::Display() const {
   DrawSplash(width_ / 10, height_ / 8, kSplashWidth);
   DrawChampionInfo(width_ / 10 + kSplashWidth + kPadding / 4, height_ / 8);
   DrawKeybindInfo(width_ / 10 + kSplashWidth + kPadding / 4, 5 * height_ / 8);
+  DrawChampionList(7 * width_ / 10 + kPadding, height_ / 8);
 }
 
 void ChampionScreen::LoadImages() {
@@ -89,7 +90,7 @@ std::vector<Champion> ChampionScreen::BuildChampionList() {
   std::string user_input;
   std::vector<std::string> champion_names;
   std::vector<Champion> champions;
-  
+
   user_input = ReadChampionName();
   while (true) {
     if (user_input == kAll || user_input == kExit) {
@@ -98,15 +99,40 @@ std::vector<Champion> ChampionScreen::BuildChampionList() {
     champion_names.push_back(user_input);
     user_input = ReadChampionName();
   }
-  
+
   if (user_input == kAll) {
-    
+
   }
-  
+
   APIHandler h;
-  for (const std::string& champion : champion_names) {
+  for (const std::string &champion : champion_names) {
     champions.push_back(h.GetChampion(champion));
   }
-  
+
   return champions;
+}
+
+void ChampionScreen::DrawChampionList(float x, float y) const {
+  gl::pushModelMatrix();
+  gl::translate(x - kListSpacing, y);
+  gl::drawString("Selected Champions", vec2(0, 0), kFontColor, kInfoFontMed);
+  gl::translate(0, kPadding / 3);
+  for (size_t i = 0; i < champions_.size(); i++) {
+    if (i % kNumColumns == 0) {
+      gl::drawString(champions_[i].GetName(),
+                     vec2(0, kListSpacing * std::trunc(i / kNumColumns)),
+                     kFontColor,
+                     kChampListFont);
+    } else {
+      gl::drawStringRight(champions_[i].GetName(),
+                     vec2(0 + kPadding * 3, kListSpacing * std::trunc(i / kNumColumns)),
+                     kFontColor,
+                     kChampListFont);
+    }
+  }
+  gl::popModelMatrix();
+}
+
+void ChampionScreen::SetChampions(const std::vector<Champion> &champions) {
+  champions_ = champions;
 }

@@ -23,6 +23,8 @@ class Screen {
   Screen(float width, float height, ScreenType screen_type);
 
   virtual void Display() const;
+  
+  virtual void SetChampions(const std::vector<Champion>& champions);
 
   void DrawButton(float x, float y, const cinder::Color &color, const std::string &label, float size) const;
   

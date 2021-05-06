@@ -39,10 +39,6 @@ class Champion {
   
   std::vector<std::string> SplitBio(size_t num_words) const;
 
-  static std::string ReadChampionName();
-  
-  static std::vector<Champion> BuildChampionList();
-
   size_t GetId() const;
   const std::string &GetName() const;
   const std::string &GetTitle() const;

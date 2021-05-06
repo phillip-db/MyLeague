@@ -61,6 +61,7 @@ void MyLeagueApp::keyDown(KeyEvent event) {
         screen_ = main;
       } else if (event.getCode() == KeyEvent::KEY_RETURN) {
         champions_ = ChampionScreen::BuildChampionList();
+        screen_->SetChampions(champions_);
       }
       break;
   }

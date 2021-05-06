@@ -33,3 +33,7 @@ Screen::ScreenType Screen::GetScreenType() const {
   return screen_type_;
 }
 
+void Screen::SetChampions(const std::vector<Champion> &champions) {
+
+}
+
