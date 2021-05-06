@@ -80,7 +80,8 @@ list(APPEND TEST_FILES tests/test_main.cc
         tests/test_champion.cc
         tests/test_champion_filterer.cc
         tests/test_ranked_league.cc
-        tests/test_statistics_analyzer.cc)
+        tests/test_statistics_analyzer.cc
+        tests/test_riot_parser.cc)
 
 add_executable(my-league apps/my_league_main.cc ${CORE_SOURCE_FILES})
 target_include_directories(my-league PRIVATE include)
