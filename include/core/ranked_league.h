@@ -9,7 +9,7 @@ namespace myleague {
 class RankedLeague {
  public:
   RankedLeague() = default;
-  
+
   RankedLeague(const std::string &league_id,
                const std::string &queue_type,
                const std::string &tier,
@@ -23,9 +23,14 @@ class RankedLeague {
                bool inactive,
                bool fresh_blood,
                bool hot_streak);
-  
-  static std::string CapitalizeFirst(const std::string& str);
-  
+
+  /**
+   * Capitalizes the first letter of a string and makes everything else lowercase
+   * @param str The string to capitalize
+   * @return the capitalized string
+   */
+  static std::string CapitalizeFirst(const std::string &str);
+
   const std::string &GetLeagueId() const;
   const std::string &GetQueueType() const;
   const std::string &GetTier() const;

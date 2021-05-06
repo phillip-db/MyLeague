@@ -18,7 +18,7 @@ class Champion {
     kMedium,
     kHard
   };
-  
+
   Champion() = default;
 
   Champion(size_t id,
@@ -36,7 +36,12 @@ class Champion {
    * @return an output stream of only the champion's name
    */
   friend std::ostream &operator<<(std::ostream &os, const Champion &champion);
-  
+
+  /**
+   * Splits the Champion shortbio into multiple lines
+   * @param num_words The maximum number of words per line
+   * @return the shortbio separated by lines as a vector
+   */
   std::vector<std::string> SplitBio(size_t num_words) const;
 
   size_t GetId() const;
@@ -46,11 +51,11 @@ class Champion {
   size_t GetStyle() const;
   size_t GetDifficulty() const;
   const std::string &GetDamageType() const;
-  
+
  private:
   static const std::string kAll;
   static const std::string kExit;
-  
+
   size_t id_{};
   std::string name_;
   std::string title_;

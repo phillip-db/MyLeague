@@ -13,7 +13,7 @@ namespace statisticsanalyzer {
  * @param ranked_league The Ranked League (Flex/SoloDuo) to compute winrate of
  * @return a summoner's winrate for the given Ranked League
  */
-double ComputeRankedWinrate(const RankedLeague& ranked_league);
+double ComputeRankedWinrate(const RankedLeague &ranked_league);
 
 } // namespace statisticsanalyzer
 

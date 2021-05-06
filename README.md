@@ -14,17 +14,26 @@ Summoner name or Champion name respectively.
 ### Summoner Screen
 
 The Summoner screen provides various information and statistics about the given Summoner, including:
+
 * Profile Picture
 * Total Mastery Score
 * Solo/Duo and Flex Queue ranks
     * includes respective win percentages
-    * Total LP 
+    * Total LP
 
 ### Champion Screen
 
 The Champion screen provides various information and statistics about the given Champion(s), including:
+
 * Champion Icon
 * Champion Title
 * Champion Bio
 
 There are also options for filtering champions from the entire roster depending on which option is selected.
+
+* **Enter Key** - Allows users to being inputting a list of champion names through the console
+* **R Key** - Removes the applies filter from the champion list
+* **C Key** - Clears the stored champion list
+* **Keys 1-3** - Allows selection of champions from the inputted list based on difficulty (Easy, Medium, Hard)
+* **S Key** - Allows selection of champions based on playstyle (number 1-10, console prompted)
+* **T Key** - Allows selection of champions based on damage type (kPhysical/kRanged/kMixed, console prompted)

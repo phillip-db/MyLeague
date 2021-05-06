@@ -27,7 +27,7 @@ void MyLeagueApp::DrawTitle() const {
 }
 
 void MyLeagueApp::setup() {
-  Surface surface(loadImage("data/images/icon.png"));
+  Surface surface(loadImage(kIconPath));
   texture_ = gl::Texture2d::create(surface);
 }
 
@@ -62,11 +62,11 @@ void MyLeagueApp::keyDown(KeyEvent event) {
         screen_ = main;
       } else if (event.getCode() == KeyEvent::KEY_RETURN) {
         std::vector<Champion> champions(ChampionScreen::BuildChampionList());
-        
-        for(const Champion& champion : champions) {
+
+        for (const Champion &champion : champions) {
           champions_.push_back(champion);
         }
-        
+
         screen_->SetChampions(champions_);
       } else if (event.getCode() == KeyEvent::KEY_1) {
         screen_->SetChampions(championfilterer::SelectByDifficulty(champions_, Champion::kEasy));

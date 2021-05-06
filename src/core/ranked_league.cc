@@ -29,17 +29,20 @@ RankedLeague::RankedLeague(const std::string &league_id,
       fresh_blood_(fresh_blood),
       hot_streak_(hot_streak) {}
 
-std::string RankedLeague::CapitalizeFirst(const std::string& str) {
+std::string RankedLeague::CapitalizeFirst(const std::string &str) {
   if (str.length() == 0) {
     return str;
   }
-  
+
   std::string new_str = str;
+  
   new_str[0] = toupper(str[0]);
+  
+  // Loop through rest of string, making letters lowercase
   for (size_t i = 1; i < str.length(); i++) {
     new_str[i] = tolower(str[i]);
   }
-  
+
   return new_str;
 }
 

@@ -18,11 +18,21 @@ class MyLeagueApp : public ci::app::App {
 
   void draw() override;
   void setup() override;
-  
+
+  /**
+   * Called when a key is pressed, used for switching screens and various functions
+   * @param event The recorded keyboard event
+   */
   void keyDown(ci::app::KeyEvent event) override;
 
+  /**
+   * Draws title seen across all screens
+   */
   void DrawTitle() const;
 
+  /**
+   * Resets the app state to the main screen
+   */
   void ResetApp();
 
   const float kWindowWidth = 1200;
@@ -30,7 +40,8 @@ class MyLeagueApp : public ci::app::App {
  private:
   const ci::Color8u kBackgroundColor = ci::Color8u(46, 56, 73); // shade of cyan
   const ci::Color kTitleColor = ci::Color("White");
-  
+  const std::string kIconPath = "data/images/icon.png";
+
   ci::gl::Texture2dRef texture_;
   Screen *screen_;
   std::vector<Champion> champions_;

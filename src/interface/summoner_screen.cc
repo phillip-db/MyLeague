@@ -20,19 +20,22 @@ SummonerScreen::SummonerScreen(float width, float height) : Screen(width, height
 void SummonerScreen::Display() const {
   gl::pushModelMatrix();
   gl::translate(0, height_ / 10);
+  
   DrawBasicInfo();
   DrawRankInfo(true, vec2(3 * width_ / 8, height_ / 8));
   DrawRankInfo(false, vec2(3 * width_ / 8, 4 * height_ / 8));
+
   gl::popModelMatrix();
 }
 
 void SummonerScreen::ReadSummonerName() {
   std::string validated_id;
   APIHandler h;
-  while (validated_id.empty()) {
+
+  while (validated_id.empty()) { // Continues prompted until valid summoner name provided
     std::cout << "Enter a valid summoner name: " << std::endl;
     std::cin >> summoner_name_;
-    
+
     validated_id = h.GetSummonerInfo(summoner_name_).GetId();
   }
 }
@@ -45,10 +48,12 @@ void SummonerScreen::DrawBasicInfo() const {
 
   gl::pushModelMatrix();
   gl::translate(width_ / 10, height_ / 8);
+
   gl::drawStringCentered(summoner_info_.GetName(), vec2(kImgSize / 2, 0), kFontColor, kNameFont);
   gl::draw(summoner_icon_, Rectf(vec2(0, kPadding), vec2(kImgSize, kImgSize + kPadding)));
   gl::drawString(mastery, vec2(0, kPadding * 2 + kImgSize), kFontColor, kRankFont);
   gl::drawString(level, vec2(0, kPadding * 1.5 + kImgSize), kFontColor, kRankFont);
+
   gl::popModelMatrix();
 }
 
@@ -63,18 +68,18 @@ void SummonerScreen::LoadImages() {
   std::string solo_url = kRankIconEndpoint + RankedLeague::CapitalizeFirst(solo.GetTier()) + "_1.png";
 
   if (solo.GetTier().empty()) {
-    solo_url = "https://img.rankedboost.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png";
+    solo_url = kDefaultRankUrl;
   }
-  
+
   image = loadImage(loadUrl(solo_url));
   ranked_solo_icon_ = Texture2d::create(image);
 
   std::string flex_url = kRankIconEndpoint + RankedLeague::CapitalizeFirst(flex.GetTier()) + "_1.png";
 
   if (flex.GetTier().empty()) {
-    flex_url = "https://img.rankedboost.com/wp-content/uploads/2014/09/unranked-season-rewards-lol.png";
+    flex_url = kDefaultRankUrl;
   }
-  
+
   image = loadImage(loadUrl(flex_url));
   ranked_flex_icon_ = Texture2d::create(image);
 }
@@ -85,7 +90,7 @@ void SummonerScreen::DrawRankInfo(bool is_solo, const vec2 &translation) const {
   std::string rank =
       ranked_league.GetTier() + " " + ranked_league.GetRank() + " "
           + std::to_string(std::round(statisticsanalyzer::ComputeRankedWinrate(ranked_league) * 100)).substr(0, 2)
-          + "%";
+          + "%"; // String including tier, rank, and win%
   std::string lp = std::to_string(ranked_league.GetLeaguePoints()) + " LP";
   std::string num_games = std::to_string(ranked_league.GetWins() + ranked_league.GetLosses());
 
@@ -93,6 +98,7 @@ void SummonerScreen::DrawRankInfo(bool is_solo, const vec2 &translation) const {
 
   gl::pushModelMatrix();
   gl::translate(translation.x, translation.y);
+
   if (is_solo) {
     gl::drawString("Solo/Duo Queue", vec2(0, 0), kFontColor, kNameFont);
     gl::draw(ranked_solo_icon_, img_constraint);
@@ -100,6 +106,7 @@ void SummonerScreen::DrawRankInfo(bool is_solo, const vec2 &translation) const {
     gl::drawString("Flex Queue", vec2(0, 0), kFontColor, kNameFont);
     gl::draw(ranked_flex_icon_, img_constraint);
   }
+
   gl::drawString(rank, vec2(0, kPadding), kFontColor, kNameFont);
   gl::drawString(lp + " | " + num_games + " Games", vec2(0, kPadding * 2), kFontColor, kNameFont);
 

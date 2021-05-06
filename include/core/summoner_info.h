@@ -17,7 +17,7 @@ class SummonerInfo {
                size_t profile_icon_id,
                size_t revision_date,
                size_t summoner_level);
-  
+
   const std::string &GetId() const;
   const std::string &GetAccountId() const;
   const std::string &GetPuuid() const;

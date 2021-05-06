@@ -37,7 +37,7 @@ class APIHandler {
    * @return A container of ranked flex/soloduo leagues.
    */
   RankedLeagueContainer GetRankedLeagues(const std::string &summoner_id) const;
-  
+
   /**
    * Retrieves basic statistics on the given champion.
    * @param champion_name The name of the Champion

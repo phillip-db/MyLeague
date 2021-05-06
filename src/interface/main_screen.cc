@@ -9,10 +9,10 @@ MainScreen::MainScreen(float width, float height) : Screen(width, height, Screen
   width_ = width;
   height_ = height;
 
-  Surface image(loadImage("data/images/summoner_button.jpg"));
+  Surface image(loadImage(kSummonerPath));
   summoner_button_ = gl::Texture2d::create(image);
 
-  image = loadImage("data/images/champion_button.jpg");
+  image = loadImage(kChampionPath);
   champion_button_ = gl::Texture2d::create(image);
 }
 

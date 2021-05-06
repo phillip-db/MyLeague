@@ -35,7 +35,8 @@ beneficial for myself and my friends because it would be used often.
 * Display statistics using Cinder
 * Play around with the looks/design of the application to be visually pleasing
 * Provide buttons/menus/keyboard events to trigger the analysis/filter functions
-* Provide search bar for champion/player names(connect backend search function with frontend UI element)
+* ~~Provide search bar for champion/player names(connect backend search function with frontend UI element)~~
+* Implement user input through console, still connects to app frontend
 
 ### Stretch Goals
 

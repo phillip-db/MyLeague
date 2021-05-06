@@ -19,21 +19,21 @@ namespace riotparser {
  * @param raw_json The JSON received from the endpoint 
  * @return a SummonerInfo object representing the JSON info
  */
-SummonerInfo ParseSummonerInfo(const json& raw_json);
+SummonerInfo ParseSummonerInfo(const json &raw_json);
 
 /**
  * Deserializes the Leagues endpoint into RankedLeague object contained by a wrapper
  * @param raw_json The JSON received from the endpoint
  * @return a RankedLeagueContainer containing summoner's two ranked leagues
  */
-RankedLeagueContainer ParseRankedLeagues(const json& raw_json);
+RankedLeagueContainer ParseRankedLeagues(const json &raw_json);
 
 /**
  * Deserializes the Champion endpoint into a Champion object
  * @param raw_json The JSON received from the endpoint
  * @return a Champion object containing information about that champion
  */
-Champion ParseChampionInfo(const json& raw_json);
+Champion ParseChampionInfo(const json &raw_json);
 
 } // namespace riotparser
 
