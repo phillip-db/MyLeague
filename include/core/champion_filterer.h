@@ -27,7 +27,7 @@ std::vector<Champion> SelectByStyle(const std::vector<Champion> &champions, size
  * @param damage_type The damage type to select for
  * @return champions that match the given damage type
  */
-std::vector<Champion> SelectByDamageType(const std::vector<Champion> &champions, std::string damage_type);
+std::vector<Champion> SelectByDamageType(const std::vector<Champion> &champions, const std::string& damage_type);
 }
 
 } // namespace myleague

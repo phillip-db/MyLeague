@@ -45,6 +45,7 @@ void MyLeagueApp::keyDown(KeyEvent event) {
       } else if (event.getCode() == KeyEvent::KEY_c) {
         auto *champion = new ChampionScreen(kWindowWidth, kWindowHeight);
         screen_ = champion;
+        screen_->SetChampions(champions_);
       } else if (event.getCode() == KeyEvent::KEY_ESCAPE) {
         quit();
       }
@@ -60,7 +61,33 @@ void MyLeagueApp::keyDown(KeyEvent event) {
         auto *main = new MainScreen(kWindowWidth, kWindowHeight);
         screen_ = main;
       } else if (event.getCode() == KeyEvent::KEY_RETURN) {
-        champions_ = ChampionScreen::BuildChampionList();
+        std::vector<Champion> champions(ChampionScreen::BuildChampionList());
+        
+        for(const Champion& champion : champions) {
+          champions_.push_back(champion);
+        }
+        
+        screen_->SetChampions(champions_);
+      } else if (event.getCode() == KeyEvent::KEY_1) {
+        screen_->SetChampions(championfilterer::SelectByDifficulty(champions_, Champion::kEasy));
+      } else if (event.getCode() == KeyEvent::KEY_2) {
+        screen_->SetChampions(championfilterer::SelectByDifficulty(champions_, Champion::kMedium));
+      } else if (event.getCode() == KeyEvent::KEY_3) {
+        screen_->SetChampions(championfilterer::SelectByDifficulty(champions_, Champion::kHard));
+      } else if (event.getCode() == KeyEvent::KEY_s) {
+        size_t style;
+        std::cout << "Enter a number 1 - 10: " << std::endl;
+        std::cin >> style;
+        screen_->SetChampions(championfilterer::SelectByStyle(champions_, style));
+      } else if (event.getCode() == KeyEvent::KEY_t) {
+        std::string type;
+        std::cout << "Enter a damage type (kPhysical/kMixed/kMagic): " << std::endl;
+        std::cin >> type;
+        screen_->SetChampions(championfilterer::SelectByDamageType(champions_, type));
+      } else if (event.getCode() == KeyEvent::KEY_r) {
+        screen_->SetChampions(champions_);
+      } else if (event.getCode() == KeyEvent::KEY_c) {
+        champions_ = std::vector<Champion>();
         screen_->SetChampions(champions_);
       }
       break;

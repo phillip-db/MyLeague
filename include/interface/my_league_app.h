@@ -3,6 +3,7 @@
 #include "main_screen.h"
 #include "summoner_screen.h"
 #include "champion_screen.h"
+#include "core/champion_filterer.h"
 #include <cinder/app/App.h>
 #include <cinder/app/RendererGl.h>
 

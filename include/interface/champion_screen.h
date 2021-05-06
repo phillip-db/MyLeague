@@ -28,7 +28,6 @@ class ChampionScreen : public Screen {
   const ci::Font kInfoFontSmall = ci::Font("Arial", 14);
   const ci::Font kKeybindFont = ci::Font("Arial", 20);
   const ci::Font kChampListFont = ci::Font("Arial", 18);
-  const static std::string kAll;
   const static std::string kExit;
   
   float width_;
