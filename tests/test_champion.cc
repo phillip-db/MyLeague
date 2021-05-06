@@ -15,10 +15,10 @@ TEST_CASE("Output stream operator", "[operator<<]") {
 
 TEST_CASE("Split ShortBio into multiple parts", "[SplitBio]") {
   Champion champion(7, "Azir", "Bird", "Fun Bird Champion", 2, 2, "Magic");
-  
-  std::vector<std::string> expected{"Fun",  "Bird", "Champion..."};
+
+  std::vector<std::string> expected{"Fun", "Bird", "Champion..."};
   REQUIRE(champion.SplitBio(1) == expected);
-  
+
   expected = {"Fun Bird..."};
   REQUIRE(champion.SplitBio(2) == expected);
 }

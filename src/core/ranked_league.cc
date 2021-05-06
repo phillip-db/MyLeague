@@ -35,6 +35,7 @@ std::string RankedLeague::CapitalizeFirst(const std::string& str) {
   }
   
   std::string new_str = str;
+  new_str[0] = toupper(str[0]);
   for (size_t i = 1; i < str.length(); i++) {
     new_str[i] = tolower(str[i]);
   }

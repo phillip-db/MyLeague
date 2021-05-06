@@ -32,7 +32,7 @@ RankedLeagueContainer riotparser::ParseRankedLeagues(const json &raw_json) {
     bool inactive = element.value("inactive", false);
     bool fresh_blood = element.value("freshBlood", false);
     bool hot_streak = element.value("hotStreak", false);
-    
+
     RankedLeague ranked_league(league_id,
                                queue_type,
                                tier,
@@ -46,7 +46,7 @@ RankedLeagueContainer riotparser::ParseRankedLeagues(const json &raw_json) {
                                inactive,
                                fresh_blood,
                                hot_streak);
-    
+
     if (queue_type == "RANKED_SOLO_5x5") {
       ranked_leagues[1] = ranked_league;
     } else if (queue_type == "RANKED_FLEX_SR") {
@@ -62,11 +62,11 @@ Champion riotparser::ParseChampionInfo(const json &raw_json) {
   std::string name = raw_json.value("name", "");
   std::string title = raw_json.value("title", "");
   std::string short_bio = raw_json.value("shortBio", "");
-  
+
   auto tactical_info = raw_json.at("tacticalInfo");
   size_t style = tactical_info.value("style", 0);
   size_t difficulty = tactical_info.value("difficulty", 0);
   std::string damage_type = tactical_info.value("damageType", "");
-  
+
   return Champion(id, name, title, short_bio, style, difficulty, damage_type);
 }

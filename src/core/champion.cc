@@ -23,6 +23,28 @@ std::ostream &myleague::operator<<(std::ostream &os, const Champion &champion) {
   return os;
 }
 
+std::vector<std::string> Champion::SplitBio(size_t num_words) const {
+  std::istringstream ss(short_bio_);
+  std::string word;
+  size_t count = 0;
+  std::string line;
+  std::vector<std::string> split_bio;
+
+  while (ss >> word) { // Using input stream to loop over every word
+    count++;
+    line += word;
+    if (count % num_words == 0) { // Reached max num_words per line
+      split_bio.push_back(line);
+      line = "";
+    } else {
+      line += " ";
+    }
+  }
+  split_bio[split_bio.size() - 1] = split_bio.back().append("..."); // Add trailing ellipse to last line
+
+  return split_bio;
+}
+
 size_t Champion::GetId() const {
   return id_;
 }
@@ -49,26 +71,4 @@ size_t Champion::GetDifficulty() const {
 
 const std::string &Champion::GetDamageType() const {
   return damage_type_;
-}
-
-std::vector<std::string> Champion::SplitBio(size_t num_words) const {
-  std::istringstream ss(short_bio_);
-  std::string word;
-  size_t count = 0;
-  std::string line;
-  std::vector<std::string> split_bio; 
-  
-  while (ss >> word) {
-    count++;
-    line += word;
-    if (count % num_words == 0) {
-      split_bio.push_back(line);
-      line = "";
-    } else {
-      line += " ";
-    }
-  }
-  split_bio[split_bio.size() - 1] = split_bio.back().append("...");
-  
-  return split_bio;
 }
