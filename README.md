@@ -6,6 +6,10 @@ Champions.
 On any screen besides the main screen, pressing the **Escape Key** will return you to the main screen. On the main
 screen, pressing the key will exit the application.
 
+### Note
+
+The application is not yet compiled and I have not yet acquired a permanent API key to compile with it. For now, this repo serves to display my progress on the app as a personal project extended from my Software Design class.
+
 ### Main Screen
 
 From the main screen of the app, pressing the **S Key** or **C Key** will prompt you in the console to input either a
