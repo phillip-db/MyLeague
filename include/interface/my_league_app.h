@@ -41,6 +41,7 @@ class MyLeagueApp : public ci::app::App {
   const ci::Color8u kBackgroundColor = ci::Color8u(46, 56, 73); // shade of cyan
   const ci::Color kTitleColor = ci::Color("White");
   const std::string kIconPath = "data/images/icon.png";
+  const std::string kAppName = "myLeague";
 
   ci::gl::Texture2dRef texture_;
   Screen *screen_;

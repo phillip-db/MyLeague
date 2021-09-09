@@ -20,7 +20,7 @@ void MyLeagueApp::draw() {
 void MyLeagueApp::DrawTitle() const {
   ci::gl::pushModelMatrix();
   ci::gl::translate(kWindowWidth / 2 + 20, kWindowHeight / 20);
-  ci::gl::drawStringCentered("myLeague", vec2(0, 0), kTitleColor, ci::Font("Arial", 30));
+  ci::gl::drawStringCentered(kAppName, vec2(0, 0), kTitleColor, ci::Font("Arial", 30));
   ci::gl::translate(-kWindowWidth / 10, -12.5);
   gl::draw(texture_, Rectf(0, 0, 50, 50));
   ci::gl::popModelMatrix();
